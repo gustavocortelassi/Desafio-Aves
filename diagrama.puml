@@ -1,0 +1,83 @@
+@startuml
+' Skin para legibilidade
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+hide empty members
+
+' --- Interfaces de Comportamento ---
+package "Interfaces de Comportamento" {
+  interface ComportamentoVoo {
+    + voar(): string
+  }
+  interface ComportamentoNado {
+    + nadar(): string
+  }
+  interface ComportamentoSom {
+    + fazerSom(): string
+  }
+}
+
+' --- Classe Base Abstrata ---
+package "Classes Base" {
+  abstract class Ave {
+    # comportamentoVoo: ComportamentoVoo
+    # comportamentoNado: ComportamentoNado
+    # comportamentoSom: ComportamentoSom
+    + executarVoo(): string
+    + executarNado(): string
+    + executarSom(): string
+  }
+}
+
+' --- Classes Concretas (Aves) ---
+package "Aves" {
+  class PatoSelvagem extends Ave
+  class Aguia extends Ave
+  class Pinguim extends Ave
+}
+
+' --- Classe Independente (Brinquedo) ---
+package "Brinquedos" {
+  class PatoDeBorracha {
+    - comportamentoNado: ComportamentoNado
+    - comportamentoSom: ComportamentoSom
+    + executarNado(): string
+    + executarSom(): string
+  }
+}
+
+' --- Implementações dos Comportamentos ---
+package "Implementações" {
+  package "Voo" {
+    class VooComAsas implements ComportamentoVoo
+    class VooExcelente implements ComportamentoVoo
+    class NaoVoa implements ComportamentoVoo
+  }
+  package "Nado" {
+    class NadoComPatas implements ComportamentoNado
+    class NadoExcelente implements ComportamentoNado
+    class NaoNada implements ComportamentoNado
+    class Flutua implements ComportamentoNado
+  }
+  package "Som" {
+    class Quack implements ComportamentoSom
+    class Screech implements ComportamentoSom
+    class Honk implements ComportamentoSom
+    class Squeak implements ComportamentoSom
+  }
+}
+
+
+' --- Relações de Composição (A parte mais importante!) ---
+
+' "Ave" TEM UM "Comportamento" (Composição)
+Ave o-- "comportamentoVoo" ComportamentoVoo
+Ave o-- "comportamentoNado" ComportamentoNado
+Ave o-- "comportamentoSom" ComportamentoSom
+
+' "PatoDeBorracha" TAMBÉM TEM UM "Comportamento" (Composição)
+' É aqui que a mágica acontece!
+PatoDeBorracha o-- "comportamentoNado" ComportamentoNado
+PatoDeBorracha o-- "comportamentoSom" ComportamentoSom
+
+@enduml
