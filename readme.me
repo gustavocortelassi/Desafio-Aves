@@ -1,6 +1,17 @@
 # Projeto POO - Simulação de Aves (TypeScript)
 
-Este projeto demonstra a aplicação de princípios de POO e TDD com TypeScript e Jest.
+Este projeto demonstra a aplicação de princípios de Programação Orientada a Objetos (POO) e Test Driven Development (TDD) utilizando TypeScript e Jest. O objetivo é modelar diferentes tipos de aves e seus comportamentos de forma flexível e extensível, seguindo o padrão de projeto Strategy.
+
+## 🦆 Estrutura do Projeto
+
+- **src/**: Código-fonte principal
+  - Classes de aves e brinquedos
+  - Implementações dos comportamentos de voo, nado e som
+  - Interfaces para os comportamentos
+  - Arquivos de teste para cada classe
+- **diagrama.puml**: Diagrama UML do projeto
+- **jest.config.js**: Configuração de testes
+- **package.json**: Dependências e scripts
 
 ## 🚀 Como Executar o Projeto
 
@@ -12,3 +23,35 @@ Clone o repositório, abra o terminal na pasta do projeto e execute:
 
 ```bash
 npm install
+```
+
+### 2. Executar os Testes
+
+```bash
+npm test
+```
+
+## 🧩 Principais Conceitos Demonstrados
+
+- **Composição de comportamentos**: Cada ave/brinquedo recebe comportamentos de voo, nado e som via composição, permitindo fácil troca e extensão.
+- **Interfaces e Implementações**: Os comportamentos são definidos por interfaces e implementados em classes separadas.
+- **Testes automatizados**: Cada classe possui testes unitários para garantir o funcionamento correto.
+
+## 📄 Exemplos de Uso
+
+```typescript
+import { PatoSelvagem } from './src/PatoSelvagem';
+
+const pato = new PatoSelvagem();
+console.log(pato.executarVoo()); // "Estou voando com asas!"
+console.log(pato.executarNado()); // "Estou nadando com patas!"
+console.log(pato.executarSom()); // "Quack!"
+```
+
+## 📚 Diagrama UML
+
+Veja o arquivo `diagrama.puml` para o diagrama completo das relações entre classes e interfaces.
+
+---
+
+Sinta-se à vontade para explorar, modificar e expandir os comportamentos das aves!
